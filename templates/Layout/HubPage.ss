@@ -1,6 +1,5 @@
 
-
-This is the hub page template
+This is the hub page
 
 
 <h1>$Title</h1>
