@@ -13,7 +13,7 @@
                         <h2>$Title</h2>
                     </a>
                     <p>Description $Description</p>
-                    <p>Tags $Tags</p>
+                    <p>Tags from taxonomy term $Tags</p>
 
                 </div>
             </li>
