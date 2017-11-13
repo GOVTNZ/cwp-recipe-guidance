@@ -10,6 +10,8 @@ class GuidancePage extends Page
         "Outcomes" => "HTMLText",
         "DetailedAdvice" => "Text",
         "Tools" => "Text",
+        "ContactPoint" => "Text",
+        "Owner" => "Text",
         "RelatedAdvice" => "Text",
         "Type" => "Enum(array('', 'Standards', 'Guidance', 'Product', 'Service'), '')",
         "Status" => "Enum(array('', 'Current', 'Flagged for review', 'Suspended or archived'), '')",
@@ -22,10 +24,13 @@ class GuidancePage extends Page
         $fields = parent::getCMSFields();
         $fields->removeByName('RevisionNote');
 
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Outcomes', 'Outcomes'));
+        $fields->addFieldToTab('Root.Main', TextareaField::create('Description', 'Description'));
+        $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Outcomes', 'Outcomes'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('DetailedAdvice', 'Detailed Advice'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('Tools', 'Tools'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('RelatedAdvice', 'Related Advice'));
+        $fields->addFieldToTab('Root.Main', TextareaField::create('ContactPoint', 'Contact Point'));
+        $fields->addFieldToTab('Root.Main', TextareaField::create('Owner', 'Owner'));
 
         $fields->addFieldToTab("Root.Main", DropdownField::create ("Type", "Type", $this->dbObject('Type')->enumValues()));
         $fields->addFieldToTab("Root.Main", DropdownField::create ("Status", "Status", $this->dbObject('Status')->enumValues()));
@@ -41,9 +46,38 @@ class GuidancePage extends Page
        // $contentField->setRows(20);
        // $fields->addFieldToTab('Root.Main', $contentField);
 
+        // Taxonomy - Paste and pray
+        // TODO: remove 'type' option?
+        $components = GridFieldConfig_RelationEditor::create();
+        $components->removeComponentsByType('GridFieldAddNewButton');
+        $components->removeComponentsByType('GridFieldEditButton');
+
+        $autoCompleter = $components->getComponentByType('GridFieldAddExistingAutocompleter');
+        $autoCompleter->setResultsFormat('$Name ($TaxonomyName)');
+
+        $dataColumns = $components->getComponentByType('GridFieldDataColumns');
+        $dataColumns->setDisplayFields(array(
+           'Name' => 'Term',
+           'TaxonomyName' => 'Taxonomy'
+        ));
+
+        $fields->addFieldToTab(
+           'Root.Tags',
+           new GridField(
+               'Terms',
+               'Terms',
+               $this->Terms(),
+               $components
+           )
+        );
+
         return $fields;
 
     }
+
+    private static $many_many = array(
+        'Terms' => 'TaxonomyTerm'
+    );
 
     function getCMSValidator()
     {
