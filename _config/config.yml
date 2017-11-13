@@ -1,0 +1,7 @@
+---
+Name: cwp-recipes-guidance
+After: 'framework/*','cms/*'
+---
+BasePage:
+  extensions:
+    - DescriptionExtension
