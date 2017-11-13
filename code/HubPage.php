@@ -8,7 +8,8 @@ class HubPage extends Page
     );
 
     private static $allowed_children = array(
-        'Page'
+        'Page',
+        'HubPage'
     );
 
     private static $can_be_root = true;
@@ -19,6 +20,8 @@ class HubPage extends Page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+
+        $fields->insertAfter('URLSegment', new TextareaField('Description', 'Description'));
 
 
         return $fields;
