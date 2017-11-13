@@ -4,10 +4,10 @@
  * Uses the schema.org terminology "description" to help move toward semantic web/structured data approach to content.
  * All structured content should have Descripton metadata.
  */
-class DescriptionExtensions extends DataExtension
+class DescriptionExtension extends DataExtension
 {
     private static $db = array (
-        'Description' => 'Text'
+        'Description' => 'Text',
     );
 
     public function updateCMSFields(FieldList $fields)

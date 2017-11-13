@@ -9,12 +9,13 @@
             <% loop $Children %>
             <li class="link">
                 <div>
-                    <a href="$link">
+                    <a href="$Link">
                         <h2>$Title</h2>
                     </a>
-                    <p>Description $Description</p>
-                    <p>Tags from taxonomy term $Tags</p>
-
+                    $Description
+                    <% loop $Terms %>
+                        $Name
+                    <% end_loop %>
                 </div>
             </li>
             <% end_loop %>
