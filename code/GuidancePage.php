@@ -44,7 +44,7 @@ class GuidancePage extends Page
         $dataColumns = $components->getComponentByType('GridFieldDataColumns');
         $dataColumns->setDisplayFields(array(
            'Name' => 'Term',
-           'TaxonomyName' => 'Taxonomy'
+           'TaxonomyType' => 'Type'
         ));
 
         $fields->addFieldToTab(
