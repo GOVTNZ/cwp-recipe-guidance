@@ -6,6 +6,7 @@
 <div>
 
 	<p>$Description</p>
+	<p>$LearningOutcomes</p>
 	<p>$Content</p>
 
 </div>
@@ -13,64 +14,22 @@
 <%-- sidebar --%>
 <div>
 	
-	<p><strong>Audience</strong></p>
+	<p><strong>Tags</strong></p>
 	<p>
-	<%-- todo: check if any items under this Term  --%>
-	<ul>
-	<% loop $Terms %>
-		<% if $Type.Name == 'Audience' %>
+		<ul>
+		<% loop $Terms %>
 			<li>
 				<span class="tag">$Name</span>		
 			</li>
-		<% end_if %>
-	<% end_loop %>
-	</ul>
+		<% end_loop %>
+		</ul>
+	</p>
 
+	<p>Agency: $Author</p>
+
+	Contact: <a href="mailto:$ContactPointEmail">$ContactPointName</a>
+
+    <p>Last Update: $LastEdited </p>
 	
-	<p><strong>Type of Data</strong></p>
-	<p>
-	<%-- todo: check if any items under this Term  --%>
-	<ul>
-	<% loop $Terms %>
-		<% if $Type.Name == 'Type of Data' %>
-			<li>
-				<span class="tag">$Name</span> 
-			</li>
-		<% end_if %>
-	<% end_loop %>
-	</ul>
-
-	<p><strong>Quality Dimension</strong></p>
-	<p>
-	<%-- todo: check if any items under this Term  --%>
-	<ul>
-	<% loop $Terms %>
-		<% if $Type.Name == 'Quality Dimension' %>
-			<li>
-				<span class="tag">$Name</span> 
-			</li>
-		<% end_if %>
-	<% end_loop %>
-	</ul>
-
-	<p>$Outcomes</p>
-
-	<p>$DetailedAdvice</p>
-
-	<p>$Tools</p>
-
-	<p>$RelatedAdvice</p>
-
-	<p>$Type</p>
-
-
-	<p>$Status</p>
-
-	<p>$Compliance</p>
-
-	<%-- temp: Depreciated? --%>
-	<pre>Depreciated?</pre>
-	<p>$LongDescription</p>
-	<p>$ShortName</p> 
 
 </div>	
