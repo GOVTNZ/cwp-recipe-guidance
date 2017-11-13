@@ -7,8 +7,7 @@ class GuidancePage extends Page
         "Title" => "Varchar(50)",
         "ShortName" => "Varchar(20)",
         "Description" => "Varchar(300)",
-        "LongDescription" => "HTMLText",
-        "Benefits" => "HTMLText",
+        "Outcomes" => "HTMLText",
         "DetailedAdvice" => "Text",
         "Tools" => "Text",
         "RelatedAdvice" => "Text",
@@ -17,13 +16,13 @@ class GuidancePage extends Page
         "Compliance" => "Enum(array('', 'Mandatory', 'Recommended', 'Commentary'), '')"
     );
 
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->removeByName('RevisionNote');
-        $fields->removeByName('Content');
 
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Benefits', 'Benefits'));
+        $fields->addFieldToTab('Root.Main', TextareaField::create('Outcomes', 'Outcomes'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('DetailedAdvice', 'Detailed Advice'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('Tools', 'Tools'));
         $fields->addFieldToTab('Root.Main', TextareaField::create('RelatedAdvice', 'Related Advice'));
@@ -33,13 +32,14 @@ class GuidancePage extends Page
         $fields->addFieldToTab("Root.Main", DropdownField::create ("Compliance", "Compliance", $this->dbObject('Compliance')->enumValues()));
 
 
-        $fields->insertAfter('Description', new HtmlEditorField('LongDescription', 'Long Description'));
+        // $fields->insertAfter('Description', new HtmlEditorField('Content', 'Long Description'));
+
         $fields->insertAfter('URLSegment', new TextField('ShortName', 'Short Name'));
 
 //        // Custom height Content field
-//        $contentField = new TextareaField('LongDescription', 'Long Description');
-//        $contentField->setRows(20);
-//        $fields->addFieldToTab('Root.Main', $contentField);
+       // $contentField = new TextareaField('Content', 'Long Description');
+       // $contentField->setRows(20);
+       // $fields->addFieldToTab('Root.Main', $contentField);
 
         return $fields;
 
