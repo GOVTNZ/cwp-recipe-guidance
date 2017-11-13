@@ -4,7 +4,7 @@ class HubPage extends Page
 {
 
     private static $db = array(
-        'Summary' => 'Text'
+        'Description' => 'Text'
     );
 
     private static $allowed_children = array(
