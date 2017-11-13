@@ -6,6 +6,7 @@
 <div>
 
 	<p>$Description</p>
+	<p>$LearningOutcomes</p>
 	<p>$Content</p>
 
 </div>
@@ -13,23 +14,22 @@
 <%-- sidebar --%>
 <div>
 	
-	<p>$Outcomes</p>
+	<p><strong>Tags</strong></p>
+	<p>
+		<ul>
+		<% loop $Terms %>
+			<li>
+				<span class="tag">$Name</span>		
+			</li>
+		<% end_loop %>
+		</ul>
+	</p>
 
-	<p>$DetailedAdvice</p>
+	<p>Agency: $Author</p>
 
-	<p>$Tools</p>
+	Contact: <a href="mailto:$ContactPointEmail">$ContactPointName</a>
 
-	<p>$RelatedAdvice</p>
-
-	<p>$Type</p>
-
-	<p>$Status</p>
-
-	<p>$Compliance</p>
-
-	<%-- temp: Depreciated? --%>
-	<pre>Depreciated?</pre>
-	<p>$LongDescription</p>
-	<p>$ShortName</p> 
+    <p>Last Update: $LastEdited </p>
+	
 
 </div>	

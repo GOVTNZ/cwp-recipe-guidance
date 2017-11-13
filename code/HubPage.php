@@ -8,12 +8,6 @@
 class HubPage extends Page
 {
 
-    private static $allowed_children = array(
-        'Page',
-        'GuidancePage',
-        'HubPage',
-    );
-
     private static $can_be_root = true;
 
     private static $singular_name = 'Hub Page';
@@ -24,6 +18,12 @@ class HubPage extends Page
 
     //Reuse the holder icon from CWP to show visually this is a Holder type page
     private static $icon = 'cwp/images/icons/sitetree_images/news_listing.png';
+
+    private static $allowed_children = array(
+        'Page',
+        'GuidancePage',
+        'HubPage',
+    );
 
     /**
      * A HubPage doesn't have a Content attribute because it gets content from child pages.
