@@ -1,0 +1,14 @@
+{
+    "name": "govtnz/cwp-recipe-guidance",
+    "description": "Adds features to a CWP website to provide guidance and 'how-to' type content.",
+    "type": "silverstripe-module",
+    "keywords": ["silverstripe", "CMS", "Structured Content", "Guidance", "HowTo"],
+    "license": "BSD-3-Clause",
+    "require": {
+        "cwp/cwp": "^1.7",
+        "silverstripe/taxonomy": "^1.2",
+        "silverstripe/sharedraftcontent": "^1.1",
+        "silverstripe/contentreview": "^3.0"
+    },
+    "minimum-stability": "dev"
+}
