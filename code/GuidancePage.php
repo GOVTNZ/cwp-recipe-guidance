@@ -3,57 +3,43 @@
 class GuidancePage extends Page
 {
 
-    private static $db = array(
-        "Title" => "Varchar(50)",
-        "ShortName" => "Varchar(20)",
-        "Description" => "Varchar(300)",
-        "Outcomes" => "HTMLText",
-        "DetailedAdvice" => "Text",
-        "Tools" => "Text",
-        "ContactPoint" => "Text",
-        "Owner" => "Text",
-        "RelatedAdvice" => "Text",
-        "Type" => "Enum(array('', 'Standards', 'Guidance', 'Product', 'Service'), '')",
-        "Status" => "Enum(array('', 'Current', 'Flagged for review', 'Suspended or archived'), '')",
-        "Compliance" => "Enum(array('', 'Mandatory', 'Recommended', 'Commentary'), '')"
-    );
+    private static $can_be_root = true;
 
+    private static $singular_name = 'Guidance Page';
+
+    private static $plural_name = 'Guidance Pages';
+
+    private static $description = 'Provides educational guidance content to readers';
+
+    private static $db = array(
+        'LearningOutcomes' => 'HTMLText', //Used to show learning outcomes of following this guidance usually as bullet points.
+        'Author' => 'Text', //Will be the name of the contributing agency for the guidance with later refactor to use the Govt.nz A-Z API.
+        'ContactPointName' => 'Varchar(255)', //A contact for this guidance
+        'ContactPointEmail' => 'Varchar(255)', // Contact Email for this guidance
+    );
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName('RevisionNote');
 
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Description', 'Description'));
-        $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Outcomes', 'Outcomes'));
-        $fields->addFieldToTab('Root.Main', TextareaField::create('DetailedAdvice', 'Detailed Advice'));
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Tools', 'Tools'));
-        $fields->addFieldToTab('Root.Main', TextareaField::create('RelatedAdvice', 'Related Advice'));
-        $fields->addFieldToTab('Root.Main', TextareaField::create('ContactPoint', 'Contact Point'));
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Owner', 'Owner'));
+        $fields->addFieldToTab('Root.Main',
+            HTMLEditorField::create('LearningOutcomes')
+                ->setRows(4)
+                ->setDescription('Use bullet points to highlight what the reader will learn from this guidance.'),
+            'Content'
+        );
+        $fields->addFieldToTab('Root.Contact', TextField::create('Author', 'Authoring Agency'));
+        $fields->addFieldToTab('Root.Contact', TextField::create('ContactPointName'));
+        $fields->addFieldToTab('Root.Contact', EmailField::create('ContactPointEmail'));
 
-        $fields->addFieldToTab("Root.Main", DropdownField::create ("Type", "Type", $this->dbObject('Type')->enumValues()));
-        $fields->addFieldToTab("Root.Main", DropdownField::create ("Status", "Status", $this->dbObject('Status')->enumValues()));
-        $fields->addFieldToTab("Root.Main", DropdownField::create ("Compliance", "Compliance", $this->dbObject('Compliance')->enumValues()));
-
-
-        // $fields->insertAfter('Description', new HtmlEditorField('Content', 'Long Description'));
-
-        $fields->insertAfter('URLSegment', new TextField('ShortName', 'Short Name'));
-
-//        // Custom height Content field
-       // $contentField = new TextareaField('Content', 'Long Description');
-       // $contentField->setRows(20);
-       // $fields->addFieldToTab('Root.Main', $contentField);
-
-        // Taxonomy - Paste and pray
-        // TODO: remove 'type' option?
+        // Display the Taxonomy and Type as a single selectable item
+        //TODO more elegant way would be to get a PR in taxonomy module to provide a concatenated name and then use this in the gridfield.
         $components = GridFieldConfig_RelationEditor::create();
         $components->removeComponentsByType('GridFieldAddNewButton');
         $components->removeComponentsByType('GridFieldEditButton');
 
         $autoCompleter = $components->getComponentByType('GridFieldAddExistingAutocompleter');
-        $autoCompleter->setResultsFormat('$Name ($TaxonomyName)');
+        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
 
         $dataColumns = $components->getComponentByType('GridFieldDataColumns');
         $dataColumns->setDisplayFields(array(
@@ -63,7 +49,7 @@ class GuidancePage extends Page
 
         $fields->addFieldToTab(
            'Root.Tags',
-           new GridField(
+           GridField::create(
                'Terms',
                'Terms',
                $this->Terms(),
@@ -74,21 +60,10 @@ class GuidancePage extends Page
         return $fields;
 
     }
-
-    private static $many_many = array(
-        'Terms' => 'TaxonomyTerm'
-    );
-
-    function getCMSValidator()
-    {
-        return new RequiredFields(array('Title', 'Description'));
-    }
-
 }
 
 
 class GuidancePage_Controller extends Page_Controller
 {
-
 
 }
