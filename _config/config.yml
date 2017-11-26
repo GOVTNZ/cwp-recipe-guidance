@@ -2,6 +2,9 @@
 Name: cwp-recipes-guidance
 After: 'framework/*','cms/*'
 ---
-BasePage:
+GuidancePage:
+  extensions:
+    - DescriptionExtension
+HubPage:
   extensions:
     - DescriptionExtension
