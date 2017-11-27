@@ -5,7 +5,7 @@
 <%-- main  --%>
 <div>
 
-	<p>$Description</p>
+	<p><% if $Description %>$Description<% else %>$MetaDescription<% end_if %></p>
 	<p>$LearningOutcomes</p>
 	<p>$Content</p>
 

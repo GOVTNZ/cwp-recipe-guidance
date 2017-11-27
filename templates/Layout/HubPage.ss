@@ -12,7 +12,11 @@
                     <a href="$Link">
                         <h2>$Title</h2>
                     </a>
-                    $Description
+                    <% if $Description %>
+                        $Description
+                    <% else %>
+                        $MetaDescription
+                    <% end_if %>
                     <% loop $Terms %>
                         $Name
                     <% end_loop %>
