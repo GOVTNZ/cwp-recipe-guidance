@@ -33,6 +33,32 @@ class HubPage extends Page
     {
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
+
+        // Display the Taxonomy and Type as a single selectable item
+        //TODO more elegant way would be to get a PR in taxonomy module to provide a concatenated name and then use this in the gridfield.
+        $components = GridFieldConfig_RelationEditor::create();
+        $components->removeComponentsByType('GridFieldAddNewButton');
+        $components->removeComponentsByType('GridFieldEditButton');
+
+        $autoCompleter = $components->getComponentByType('GridFieldAddExistingAutocompleter');
+        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
+
+        $dataColumns = $components->getComponentByType('GridFieldDataColumns');
+        $dataColumns->setDisplayFields(array(
+            'Name' => 'Term',
+            'TaxonomyType' => 'Type'
+        ));
+
+        $fields->addFieldToTab(
+            'Root.Tags',
+            GridField::create(
+                'Terms',
+                'Terms',
+                $this->Terms(),
+                $components
+            )
+        );
+
         return  $fields;
     }
 

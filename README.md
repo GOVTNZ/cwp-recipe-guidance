@@ -17,8 +17,8 @@ It includes related module dependencies, useful page types, guidance related fea
 See [License](LICENSE.md).
  
 ## Maintainers
-  - Add yourself here
-  - Cam Findlay <cam@camfindlay.com>
+  - Amanda Baker <amanda.baker@dia.govt.nz>
+  - Cam Findlay <cam.findlay@dia.govt.nz>
   
 ## Bugtracker
 Bugs are tracked in the issues section of this repository. Before submitting an issue please read over 
