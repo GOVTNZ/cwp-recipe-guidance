@@ -17,6 +17,14 @@ Feature: GuidancePage
       | Title | What is open data? |
       | URLSegment | what-is-open-data |
       | Content    | Open data is data that anyone can use and share. |
+      | Author  | Cam Findlay |
+      | ContactPointName | Cam Findlay |
+      | ContactPointEmail  | cam.findlay@dia.govt.nz |
+      | Type  | Standard |
+    Given the "GuidancePage" "Page2" has the following data
+      | Title | What is open data? |
+      | URLSegment | what-is-open-data2 |
+      | Content    | Open data is data that anyone can use and share. |
       | LearningOutcomes   | Understand the  basic elements required to make open data, open. |
       | Author  | Cam Findlay |
       | ContactPointName | Cam Findlay |
@@ -28,7 +36,9 @@ Feature: GuidancePage
 #      | CkanUrl | https://uat.data.govt.nz/ |
 
   Scenario: The user can see the learning outcomes associated with the guidance page
-    Given I go to "what-is-open-data"
+    When I go to "what-is-open-data"
+    Then I should not see "Learning Outcomes"
+    When I go to "what-is-open-data2"
     Then I should see "Learning Outcomes"
 
 
