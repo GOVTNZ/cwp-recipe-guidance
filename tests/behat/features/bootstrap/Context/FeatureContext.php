@@ -36,7 +36,6 @@ class FeatureContext extends SilverStripeContext {
     public function __construct(array $parameters) {
         parent::__construct($parameters);
 
-        echo "HEEEEERE\n";
         $this->useContext('BasicContext', new BasicContext($parameters));
         $this->useContext('LoginContext', new LoginContext($parameters));
         $this->useContext('CmsFormsContext', new CmsFormsContext($parameters));
