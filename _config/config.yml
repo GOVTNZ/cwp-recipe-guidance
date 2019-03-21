@@ -7,3 +7,7 @@ GovtNZ\Guidance\GuidancePage:
 GovtNZ\Guidance\HubPage:
   extensions:
     - GovtNZ\Guidance\DescriptionExtension
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    GuidancePage: 'GovtNZ\Guidance\GuidancePage'
+    HubPage: 'GovtNZ\Guidance\HubPage'

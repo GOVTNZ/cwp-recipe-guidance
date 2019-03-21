@@ -31,6 +31,8 @@ class GuidancePage extends Page
         'ContactPointEmail' => 'Varchar(255)', // Contact Email for this guidance
     ];
 
+    private static $table_name = 'GuidancePage';
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();

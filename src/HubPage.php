@@ -29,6 +29,8 @@ class HubPage extends Page
     // Reuse the holder icon from CWP to show visually this is a Holder type page
     private static $icon = 'cwp/images/icons/sitetree_images/news_listing.png';
 
+    private static $table_name = 'HubPage';
+
     private static $allowed_children = [
         Page::class,
         GuidancePage::class,
