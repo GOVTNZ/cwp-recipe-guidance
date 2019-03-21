@@ -1,5 +1,15 @@
 <?php
 
+namespace GovtNZ\Guidance;
+
+use Page;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldEditButton;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+
 /**
  * Class HubPage
  * A page type that will display a title, summary and taxonomy tags of it's child pages. Hub Pages
@@ -16,17 +26,19 @@ class HubPage extends Page
 
     private static $description = 'Displays a title and summary of sub-pages users can use to navigate';
 
-    //Reuse the holder icon from CWP to show visually this is a Holder type page
+    // Reuse the holder icon from CWP to show visually this is a Holder type page
     private static $icon = 'cwp/images/icons/sitetree_images/news_listing.png';
 
-    private static $allowed_children = array(
-        'Page',
-        'GuidancePage',
-        'HubPage',
-    );
+    private static $allowed_children = [
+        Page::class,
+        GuidancePage::class,
+        HubPage::class,
+    ];
 
     /**
-     * A HubPage doesn't have a Content attribute because it gets content from child pages.
+     * A HubPage doesn't have a Content attribute because it gets content from
+     * child pages.
+     *
      * @return FieldList
      */
     public function getCMSFields()
@@ -37,17 +49,20 @@ class HubPage extends Page
         // Display the Taxonomy and Type as a single selectable item
         //TODO more elegant way would be to get a PR in taxonomy module to provide a concatenated name and then use this in the gridfield.
         $components = GridFieldConfig_RelationEditor::create();
-        $components->removeComponentsByType('GridFieldAddNewButton');
-        $components->removeComponentsByType('GridFieldEditButton');
+        $components->removeComponentsByType(GridFieldAddNewButton::class);
+        $components->removeComponentsByType(GridFieldEditButton::class);
 
-        $autoCompleter = $components->getComponentByType('GridFieldAddExistingAutocompleter');
-        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
-
-        $dataColumns = $components->getComponentByType('GridFieldDataColumns');
+        $dataColumns = $components->getComponentByType(GridFieldDataColumns::class);
         $dataColumns->setDisplayFields(array(
             'Name' => 'Term',
             'TaxonomyType' => 'Type'
         ));
+
+        $autoCompleter = $components->getComponentByType(
+            GridFieldAddExistingAutocompleter::class
+        );
+
+        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
 
         $fields->addFieldToTab(
             'Root.Tags',
@@ -61,10 +76,4 @@ class HubPage extends Page
 
         return  $fields;
     }
-
-}
-
-class HubPage_Controller extends Page_Controller
-{
-
 }

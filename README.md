@@ -1,12 +1,12 @@
 # CWP Guidance content recipe
 
-Enables a CWP website to manage and display guidance type content. 
-It includes related module dependencies, useful page types, guidance related features and basic templates.
+Enables a CWP website to manage and display guidance type content. It includes 
+related module dependencies, useful page types, guidance related features and 
+basic templates.
 
 ## Requirements
 
- - SilverStripe core 3.6.x
- - CWP Recipe Basic 1.7.x (or equivelent modules relating to guidance features)
+ - SilverStripe 4.x
 
 ## Installing
 
@@ -21,8 +21,9 @@ See [License](LICENSE.md).
   - Cam Findlay <cam.findlay@dia.govt.nz>
   
 ## Bugtracker
-Bugs are tracked in the issues section of this repository. Before submitting an issue please read over 
-existing issues to ensure yours is unique. 
+
+Bugs are tracked in the issues section of this repository. Before submitting an 
+issue please read over existing issues to ensure yours is unique. 
   
  If the issue does look like a new bug:
   

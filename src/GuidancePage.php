@@ -1,5 +1,18 @@
 <?php
 
+namespace GovtNZ\Guidance;
+
+use Page;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldEditButton;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+
 class GuidancePage extends Page
 {
 
@@ -11,12 +24,12 @@ class GuidancePage extends Page
 
     private static $description = 'Provides educational guidance content to readers';
 
-    private static $db = array(
+    private static $db = [
         'LearningOutcomes' => 'HTMLText', //Used to show learning outcomes of following this guidance usually as bullet points.
         'Author' => 'Text', //Will be the name of the contributing agency for the guidance with later refactor to use the Govt.nz A-Z API.
         'ContactPointName' => 'Varchar(255)', //A contact for this guidance
         'ContactPointEmail' => 'Varchar(255)', // Contact Email for this guidance
-    );
+    ];
 
     public function getCMSFields()
     {
@@ -35,13 +48,16 @@ class GuidancePage extends Page
         // Display the Taxonomy and Type as a single selectable item
         //TODO more elegant way would be to get a PR in taxonomy module to provide a concatenated name and then use this in the gridfield.
         $components = GridFieldConfig_RelationEditor::create();
-        $components->removeComponentsByType('GridFieldAddNewButton');
-        $components->removeComponentsByType('GridFieldEditButton');
+        $components->removeComponentsByType(GridFieldAddNewButton::class);
+        $components->removeComponentsByType(GridFieldEditButton::class);
 
-        $autoCompleter = $components->getComponentByType('GridFieldAddExistingAutocompleter');
+        $autoCompleter = $components->getComponentByType(
+            GridFieldAddExistingAutocompleter::class
+        );
+
         $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
 
-        $dataColumns = $components->getComponentByType('GridFieldDataColumns');
+        $dataColumns = $components->getComponentByType(GridFieldDataColumns::class);
         $dataColumns->setDisplayFields(array(
            'Name' => 'Term',
            'TaxonomyType' => 'Type'
@@ -60,10 +76,4 @@ class GuidancePage extends Page
         return $fields;
 
     }
-}
-
-
-class GuidancePage_Controller extends Page_Controller
-{
-
 }

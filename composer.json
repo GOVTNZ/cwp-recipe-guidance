@@ -1,20 +1,38 @@
 {
     "name": "govtnz/cwp-recipe-guidance",
     "description": "Adds features to a CWP website to provide guidance and 'how-to' type content.",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "CMS", "Structured Content", "Guidance", "HowTo"],
     "license": "BSD-3-Clause",
+    "authors": [{
+      "name": "Govt.nz",
+      "email": "govtnz@dia.govt.nz"
+    }],
     "require": {
-        "cwp/cwp": "^1.7",
-        "silverstripe/taxonomy": "^1.2",
-        "silverstripe/sharedraftcontent": "^1.1",
-        "silverstripe/contentreview": "^3.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^3 || ^4 || ^5"
+        "cwp/cwp-recipe-cms": ">2.2"
     },
     "autoload": {
-        "classmap": ["tests/behat/", "code"]
+        "psr-4": {
+            "GovtNZ\\Guidance\\": "src/",
+            "GovtNZ\\Guidance\\Tests\\": "tests/"
+        }
     },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "scripts": {
+        "remove-uses": "php-cs-fixer fix src/ tests/ --rules=no_unused_imports",
+        "lint": "phpcs --extensions=php src/ tests/",
+        "syntax-check": "find src/ tests/",
+        "lint-clean": "phpcbf src/ tests/"
+    },
+    "extra": {
+      "branch-alias": {
+        "dev-master": "2.x-dev"
+      }
+    },
+    "prefer-stable": true,
     "minimum-stability": "dev"
+}
 }

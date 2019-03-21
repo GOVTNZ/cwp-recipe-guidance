@@ -1,14 +1,25 @@
 <?php
+
+namespace GovtNZ\Guidance;
+
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextareaField;
+
 /**
- * Decorates a DataObject or Page Type to add a short metadata description used to describe the content on the page.
- * Uses the schema.org terminology "description" to help move toward semantic web/structured data approach to content.
+ * Decorates a DataObject or Page Type to add a short metadata description used
+ * to describe the content on the page.
+ *
+ * Uses the schema.org terminology "description" to help move toward semantic
+ * web/structured data approach to content.
+ *
  * All structured content should have Descripton metadata.
  */
 class DescriptionExtension extends DataExtension
 {
-    private static $db = array (
+    private static $db = [
         'Description' => 'Text',
-    );
+    ];
 
     public function updateCMSFields(FieldList $fields)
     {

@@ -1,10 +1,9 @@
 ---
-Name: cwp-recipes-guidance
-After: 'framework/*','cms/*'
+Name: govtnz-guidance
 ---
-GuidancePage:
+GovtNZ\Guidance\GuidancePage:
   extensions:
-    - DescriptionExtension
-HubPage:
+    - GovtNZ\Guidance\DescriptionExtension
+GovtNZ\Guidance\HubPage:
   extensions:
-    - DescriptionExtension
+    - GovtNZ\Guidance\DescriptionExtension
