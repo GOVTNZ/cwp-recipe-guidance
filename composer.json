@@ -9,7 +9,7 @@
       "email": "govtnz@dia.govt.nz"
     }],
     "require": {
-        "cwp/cwp-recipe-cms": ">2.2"
+        "cwp/cwp-recipe-cms": ">2"
     },
     "autoload": {
         "psr-4": {
