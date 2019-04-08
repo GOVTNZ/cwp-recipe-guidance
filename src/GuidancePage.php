@@ -37,7 +37,8 @@ class GuidancePage extends Page
     {
         $fields = parent::getCMSFields();
 
-        $fields->addFieldToTab('Root.Main',
+        $fields->addFieldToTab(
+            'Root.Main',
             HTMLEditorField::create('LearningOutcomes')
                 ->setRows(4)
                 ->setDescription('Use bullet points to highlight what the reader will learn from this guidance.'),
@@ -66,16 +67,15 @@ class GuidancePage extends Page
         ));
 
         $fields->addFieldToTab(
-           'Root.Tags',
-           GridField::create(
-               'Terms',
-               'Terms',
-               $this->Terms(),
-               $components
-           )
+            'Root.Tags',
+            GridField::create(
+                'Terms',
+                'Terms',
+                $this->Terms(),
+                $components
+            )
         );
 
         return $fields;
-
     }
 }
