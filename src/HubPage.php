@@ -78,4 +78,9 @@ class HubPage extends Page
 
         return  $fields;
     }
+
+    public function isNavigationRoot()
+    {
+        return true;
+    }
 }
