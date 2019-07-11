@@ -27,7 +27,7 @@ class HubPage extends Page
     private static $description = 'Displays a title and summary of sub-pages users can use to navigate';
 
     // Reuse the holder icon from CWP to show visually this is a Holder type page
-    private static $icon = 'cwp/images/icons/sitetree_images/news_listing.png';
+    private static $icon_class = 'font-icon-p-news-item';
 
     private static $table_name = 'HubPage';
 
