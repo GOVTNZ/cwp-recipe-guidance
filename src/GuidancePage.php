@@ -58,7 +58,7 @@ class GuidancePage extends Page
             GridFieldAddExistingAutocompleter::class
         );
 
-        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
+        $autoCompleter->setResultsFormat('$Name');
 
         $dataColumns = $components->getComponentByType(GridFieldDataColumns::class);
         $dataColumns->setDisplayFields(array(
@@ -77,5 +77,15 @@ class GuidancePage extends Page
         );
 
         return $fields;
+    }
+
+    public function Content()
+    {
+        return $this->dbObject('Content');
+    }
+
+    public function AuthorName()
+    {
+        return $this->dbObject('Author');
     }
 }

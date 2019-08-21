@@ -64,13 +64,13 @@ class HubPage extends Page
             GridFieldAddExistingAutocompleter::class
         );
 
-        $autoCompleter->setResultsFormat('$Name ($TaxonomyType)');
+        $autoCompleter->setResultsFormat('$Name');
 
         $fields->addFieldToTab(
             'Root.Tags',
             GridField::create(
                 'Terms',
-                'Terms',
+                '',
                 $this->Terms(),
                 $components
             )
