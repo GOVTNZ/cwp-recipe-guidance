@@ -9,10 +9,10 @@
       "email": "govtnz@dia.govt.nz"
     }],
     "require": {
-      "cwp/cwp-pdfexport": "1.2.0@stable",
-      "silverstripe/recipe-ccl": "2.9.0@stable",
-      "silverstripe/html5": "2.1.0@stable",
-      "silverstripe/recipe-cms": "4.9.0@stable",
+      "cwp/cwp-pdfexport": "^1.2.0",
+      "silverstripe/recipe-ccl": "^2.9.0",
+      "silverstripe/html5": "^2.1.0",
+      "silverstripe/recipe-cms": "^4.9.0",
       "silverstripe/recipe-plugin": "^1"
     },
     "autoload": {
@@ -20,10 +20,6 @@
             "GovtNZ\\Guidance\\": "src/",
             "GovtNZ\\Guidance\\Tests\\": "tests/"
         }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "squizlabs/php_codesniffer": "^3.4"
     },
     "scripts": {
         "remove-uses": "php-cs-fixer fix src/ tests/ --rules=no_unused_imports",
