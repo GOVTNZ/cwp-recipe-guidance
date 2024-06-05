@@ -9,11 +9,9 @@
       "email": "govtnz@dia.govt.nz"
     }],
     "require": {
-      "cwp/cwp-pdfexport": "^1.2.0",
-      "silverstripe/recipe-ccl": "^2.9.0",
-      "silverstripe/html5": "^2.1.0",
-      "silverstripe/recipe-cms": "^4.9.0",
-      "silverstripe/recipe-plugin": "^1"
+      "silverstripe/recipe-ccl": "^3.1.0",
+      "silverstripe/recipe-cms": "^5.2.0",
+      "silverstripe/recipe-plugin": "^2"
     },
     "autoload": {
         "psr-4": {
@@ -33,8 +31,5 @@
       }
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
-    "provide": {
-      "cwp/cwp-recipe-cms": "2.8.0"
-    }
+    "minimum-stability": "dev"
 }
