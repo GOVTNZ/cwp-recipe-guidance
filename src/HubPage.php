@@ -47,6 +47,7 @@ class HubPage extends Page
     {
         $fields = parent::getCMSFields();
         $fields->removeByName('Content');
+        $fields->removeByName('Description');
 
         // Display the Taxonomy and Type as a single selectable item
         //TODO more elegant way would be to get a PR in taxonomy module to provide a concatenated name and then use this in the gridfield.
