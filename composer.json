@@ -9,7 +9,6 @@
       "email": "govtnz@dia.govt.nz"
     }],
     "require": {
-      "silverstripe/recipe-ccl": "^3.1.0",
       "silverstripe/recipe-cms": "^5.2.0",
       "silverstripe/recipe-plugin": "^2"
     },
